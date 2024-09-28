@@ -9,8 +9,24 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DarkoKuzmanovic/dasko-i-mladja.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "Darko Kuzmanovic <darko@quz.ma>",
+  "keywords": [
+    "tauri",
+    "sveltekit",
+    "typescript",
+    "desktop-app"
+  ],
   "license": "MIT",
   "dependencies": {
     "@skeletonlabs/skeleton": "^2.10.2",
@@ -24,7 +40,11 @@
     "@sveltejs/kit": "^2.5.28",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@tauri-apps/cli": "^1",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0",
     "autoprefixer": "^10.4.20",
+    "eslint": "^9.11.1",
+    "eslint-plugin-svelte": "^2.44.1",
     "postcss": "^8.4.47",
     "svelte": "^4.2.19",
     "svelte-check": "^3.6.0",
