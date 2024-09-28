@@ -1,0 +1,18 @@
+{
+  "Add-comment": {
+    "description": "Add comments to source",
+    "prompt": "You're a highly skilled software engineer and your task is to add comments to this code and explain what each segment does. The comments should be clean and concise and placed at relevant parts of the code.",
+    "mode": "edit",
+    "context": {
+      "codebase": false,
+      "command": "",
+      "currentDir": false,
+      "currentFile": false,
+      "directoryPath": "",
+      "filePath": "",
+      "none": false,
+      "openTabs": false,
+      "selection": false
+    }
+  }
+}
