@@ -133,15 +133,34 @@
       currentPage -= 1;
     }
   }
+
+  function handleTabChange(newTabSet: number) {
+    if (newTabSet !== tabSet) {
+      tabSet = newTabSet;
+      if (isPlaying) {
+        audio.play();
+      }
+    }
+  }
 </script>
 
 <div class="container mx-auto p-4 space-y-4 bg-gradient-to from-primary-500">
   <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
-    <RadioItem name="radio-group" value={0} bind:group={tabSet}>Radio uživo</RadioItem>
-    <RadioItem name="radio-group" value={1} bind:group={tabSet}>Podkast</RadioItem>
-    <RadioItem name="radio-group" value={2} bind:group={tabSet}>Podrška</RadioItem>
-    <RadioItem name="radio-group" value={3} bind:group={tabSet}>Opcije</RadioItem>
+    <RadioItem bind:group={tabSet} name="radio-group" value={0} on:click={() => handleTabChange(0)}
+      >Radio uživo</RadioItem
+    >
+    <RadioItem bind:group={tabSet} name="radio-group" value={1} on:click={() => handleTabChange(1)}>Podkast</RadioItem>
+    <RadioItem bind:group={tabSet} name="radio-group" value={2} on:click={() => handleTabChange(2)}>Podrška</RadioItem>
+    <RadioItem bind:group={tabSet} name="radio-group" value={3} on:click={() => handleTabChange(3)}>Opcije</RadioItem>
   </RadioGroup>
+
+  <audio
+    bind:this={audio}
+    src={audioSource}
+    on:ended={() => (isPlaying = false)}
+    on:timeupdate={updateTime}
+    on:loadedmetadata={updateMetadata}
+  ></audio>
 
   <!-- Content based on selection -->
   {#if tabSet === 0}
@@ -149,13 +168,6 @@
     <div class="card p-8 space-y-16 -space-x-4">
       <h4 class="h4">Radio uživo</h4>
       <div class="flex items-center space-x-4">
-        <audio
-          bind:this={audio}
-          src={audioSource}
-          on:ended={() => (isPlaying = false)}
-          on:timeupdate={updateTime}
-          on:loadedmetadata={updateMetadata}
-        ></audio>
         <button on:click={togglePlay} class="btn variant-filled-primary" aria-label={isPlaying ? "Pause" : "Play"}>
           {#if isPlaying}
             <Pause size={16} />
@@ -287,5 +299,8 @@
         </div>
       {/if}
     </div>
-  {/if}
+
+
+
+    {/if}
 </div>
